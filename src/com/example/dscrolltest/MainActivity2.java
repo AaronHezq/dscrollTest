@@ -4,19 +4,12 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-
-import com.example.dscrolltest.ObservableScrollView.ScrollViewListener;
 
 public class MainActivity2 extends Activity {
 
@@ -28,8 +21,6 @@ public class MainActivity2 extends Activity {
 	private int localViewHeight = 0;
 	private int localViewY = 0;
 
-	// private int scrollY = -1;
-
 	private boolean isTouching = false;
 
 	private Handler handler = new Handler() {
@@ -40,7 +31,7 @@ public class MainActivity2 extends Activity {
 				if (isTouching)
 					return;
 				int h = localViewY + localViewHeight / 2 - cLineY;
-				listView.smoothScrollBy(h, 500);
+				listView.smoothScrollBy(h, 800);
 				break;
 			}
 		};
@@ -59,12 +50,7 @@ public class MainActivity2 extends Activity {
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
 				getChildView();
 				if(scrollState == SCROLL_STATE_IDLE) {
-					handler.postDelayed(new Runnable() {
-						@Override
-						public void run() {
-							handler.sendEmptyMessage(1);
-						}
-					}, 300);
+					handler.sendEmptyMessage(1);
 				}
 			}
 
