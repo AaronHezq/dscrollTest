@@ -1,1 +1,1 @@
-# dscrollTest 测试滑动以及子类view位置操作
+# listview实现子View自动居中
