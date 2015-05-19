@@ -1,22 +1,25 @@
 package com.example.dscrolltest;
 
+import com.example.dscrolltest.ObservableScrollView.ScrollViewListener;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.TextureView;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
-import com.example.dscrolltest.ObservableScrollView.ScrollViewListener;
-
-public class MainActivity extends Activity {
+public class CopyOfMainActivity extends Activity {
 
 	private ObservableScrollView scrollView;
 	LinearLayout layout;
@@ -31,7 +34,6 @@ public class MainActivity extends Activity {
 	private boolean isTouching = false;
 
 	private Handler handler = new Handler() {
-		@SuppressLint("NewApi") 
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
 			case 1:
@@ -39,13 +41,8 @@ public class MainActivity extends Activity {
 					return;
 				if (scrollView.getScrollY() == scrollY) {
 					int h = localViewY + localViewHeight / 2 - cLineY;
-//					TranslateAnimation animation = new TranslateAnimation(0, 0, layout.getY(), layout.getY()+h);
-//					animation.setDuration(1000);
-//					animation.setFillAfter(true);
-//					layout.startAnimation(animation);
-//					 scrollView.scrollBy(0, h);
-					 scrollView.smoothScrollBy(0, h);
-					//scroll(h);
+					// scrollView.scrollBy(0, h);
+					scroll(h);
 				}
 				break;
 			case 2:
@@ -136,11 +133,6 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	public void listView(View view) {
-		Intent intent = new Intent(this,MainActivity2.class);
-		startActivity(intent);
-	}
-	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
